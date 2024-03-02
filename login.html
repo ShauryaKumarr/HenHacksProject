@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoomieUD Login</title>
+<style>
+  
+body {
+    font-family: Arial, sans-serif;
+    background-color: #00539F; /* Adjust the color to match the image */
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    margin-top: 20px; /* Add space between the header and the form */
+  }
+  
+  h1 {
+    color: #FFD200;
+    margin-bottom: 20px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .login-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .login-form button {
+    padding: 10px;
+    background-color: #1E90FF; /* Adjust the color to match the image */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .login-form button:hover {
+    background-color: #4c91bf; /* Slightly darker for hover effect */
+  }
+  .create-account {
+    color: #1E90FF; /* Adjust the color to match the image */
+    text-decoration: none;
+    margin-top: 10px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+    <h1>RoomieUD</h1>
+    <div class="login-container">
+      <p>A place to find your future UDormmate!</p>
+      <div class="error-message" style="color: red;"></div> <!-- Add this for error messages -->
+      <form class="login-form">
+        <input type="text" placeholder="Username" name="Username" required>
+        <input type="password" placeholder="Password" name="Password" required>
+        <button type="submit">Sign In</button>
+      </form>
+      <a href="signup.html" class="create-account">New User? Create Account</a>
+    </div>
+<script>
+// JavaScript Code Here
+let users = {
+  'chavi': '1234',
+  'shaurya': '1234',
+  'chin': '1234',
+};
+
+if (localStorage.getItem('users')) {
+  users = JSON.parse(localStorage.getItem('users'));
+}
+
+const form = document.querySelector('.login-form');
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+  const username = document.querySelector('input[name="Username"]').value;
+  const password = document.querySelector('input[name="Password"]').value;
+  if (users[username] && users[username] === password) {
+    console.log('Login successful.'); // Optionally, remove or keep for debugging
+    window.location.href = 'home.html'; // Corrected to properly redirect
+  } else {
+    document.querySelector('.error-message').innerHTML = 'Login failed: Invalid username or password.';
+  }
+});
+
+function registerNewUser(username, password) {
+  users[username] = password;
+  localStorage.setItem('users', JSON.stringify(users));
+}
+</script>
+</body>
+</html>
+

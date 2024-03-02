@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoomieUD Questionnaire</title>
+<style>
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #1E90FF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .questionnaire-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    margin-top: 20px;
+  }
+  .questionnaire-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .questionnaire-form label,
+  .questionnaire-form input,
+  .questionnaire-form select {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .questionnaire-form input[type="radio"],
+  .questionnaire-form input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  .questionnaire-form button {
+    padding: 10px;
+    background-color: #1E90FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+  }
+  .questionnaire-form button:hover {
+    background-color: #1C86EE;
+  }
+  .inline {
+    display: flex;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+  <h1>Roommate Matching Questionnaire</h1>
+  <div class="questionnaire-container">
+    <form class="questionnaire-form">
+      <label for="housing">1. Do you prefer dorms or apartments?</label>
+      <select id="housing" required>
+        <option value="">Select an option</option>
+        <option value="dorms">Dorms</option>
+        <option value="apartments">Apartments</option>
+      </select>
+
+      <label for="budget">2. What is your budget?</label>
+      <input type="text" id="budget" placeholder="Enter your monthly budget" required>
+
+      <label>3. What best describes your noise tolerance?</label>
+      <select required>
+        <option value="">Select an option</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <label>4. How clean do you keep your room?</label>
+      <select required>
+        <option value="">Select an option</option>
+        <option value="always_clean">Always clean</option>
+        <option value="usually_clean">Usually clean</option>
+        <option value="occasionally_messy">Occasionally messy</option>
+        <option value="often_messy">Often messy</option>
+      </select>
+
+      <label for="wake-up-time">5. What time do you usually wake up?</label>
+      <input type="time" id="wake-up-time" required>
+
+      <label for="sleep-time">6. What time do you usually go to sleep?</label>
+      <input type="time" id="sleep-time" required>
+
+      <div class="inline">
+        <input type="checkbox" id="smoker">
+        <label for="smoker">7. Are you a smoker?</label>
+      </div>
+
+      <div class="inline">
+        <input type="checkbox" id="drinker">
+        <label for="drinker">8. Do you drink?</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

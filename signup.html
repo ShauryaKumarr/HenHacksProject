@@ -29,17 +29,17 @@
     width: 300px;
     margin-top: 20px; /* Adds space between the title and the form */
   }
-  .login-form {
+  .registration-form {
     display: flex;
     flex-direction: column;
   }
-  .login-form input {
+  .registration-form input {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
-  .login-form button {
+  .registration-form button {
     padding: 10px;
     background-color: #1E90FF;
     color: white;
@@ -47,7 +47,7 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  .login-form button:hover {
+  .registration-form button:hover {
     background-color: #1C86EE;
   }
   .create-account {
@@ -61,23 +61,47 @@
 <body>
   <h1>RoomieUD</h1>
   <div class="login-container">
-    <p>A place to find your future UDormmate!</p>
-    <form class="login-form">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="number" placeholder="Age" required>
-      <input type="text" placeholder="Username" required>
-      <input type="password" placeholder="Password" required>
+    <p>A place to find your future UD ormmate!</p>
+    <form class="registration-form">
+      <input type="text" placeholder="Name" id="name" required>
+      <input type="email" placeholder="Email" id="email" required>
+      <input type="number" placeholder="Age" id="age" required>
+      <input type="text" placeholder="Username" id="regUsername" required>
+      <input type="password" placeholder="Password" id="regPassword" required>
       <button type="submit">Register</button>
-    </form>
+  </form>  
     <a href="login.html" class="create-account">Sign In</a>
   </div>
 
 
 
-<script src="scripts.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const registrationForm = document.querySelector(".registration-form");
+
+    registrationForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Get input values
+      const name = registrationForm.querySelector("#name").value;
+      const email = registrationForm.querySelector("#email").value;
+      const age = registrationForm.querySelector("#age").value;
+      const regUsername = registrationForm.querySelector("#regUsername").value;
+      const regPassword = registrationForm.querySelector("#regPassword").value;
+
+      // Store user information in local storage
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("age", age);
+      localStorage.setItem("username", regUsername);
+      localStorage.setItem("password", regPassword);
+
+      // Redirect to login.html after successful registration
+      window.location.href = "login.html";
+    });
+  });
+</script>
 </body>                              
 </html>
 
-</body>
-</html>
+

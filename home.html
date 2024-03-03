@@ -136,18 +136,15 @@
     if (userQuestionnaireData) {
       userQuestionnaireData = JSON.parse(userQuestionnaireData);
     } else {
-      // If no existing data, initialize as an empty array
+      //extraneous case for no data
       userQuestionnaireData = [];
     }
 
-    // Add the new questionnaire responses to the array
     userQuestionnaireData.push(responses);
 
-    // Save the updated array back to local storage
+    //save array to local stor
     localStorage.setItem(loggedInUser, JSON.stringify(userQuestionnaireData));
 
-    // Optionally, you can redirect the user to another page after submitting the questionnaire
-    // window.location.href = "another_page.html";
   });
 });
 

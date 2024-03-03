@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compatibility App</title>
+</head>
+<body>
+  <h1>Compatibility App</h1>
+
+  <script>
+    // Function to calculate Euclidean distance between two preference objects
+    function calculateEuclideanDistance(prefs1, prefs2) {
+      const keys = Object.keys(prefs1);
+      let sumOfSquares = 0;
+
+      for (const key of keys) {
+        const diff = prefs1[key] - prefs2[key];
+        sumOfSquares += diff * diff;
+      }
+
+      return Math.sqrt(sumOfSquares);
+    }
+
+    // Hardcoded user objects
+    const user1 = {
+      preferences: {
+        "housingPreference": 4,
+        "budgetLevel": 7,
+        "noiseTolerance": 5,
+        "cleanlinessLevel": 1,
+        "wakeUpTime": 6,
+        "sleepTime": 8,
+        "smokingPreference": 6,
+        "drinkingPreference": 3,
+        "socialLevel": 6,
+        "temperaturePreference": 5
+      },
+      image: "path/to/user1.jpg",
+      bio: "I love quiet spaces, enjoy budget-friendly living, and have a moderate social life."
+    };
+
+    const user2 = {
+      preferences: {
+        "housingPreference": 7,
+        "budgetLevel": 5,
+        "noiseTolerance": 8,
+        "cleanlinessLevel": 3,
+        "wakeUpTime": 7,
+        "sleepTime": 6,
+        "smokingPreference": 4,
+        "drinkingPreference": 7,
+        "socialLevel": 8,
+        "temperaturePreference": 4
+      },
+      image: "path/to/user2.jpg",
+      bio: "I enjoy a lively environment, prefer mid-range budgets, and have an active social life."
+    };
+
+    // Calculate compatibility between user1 and user2
+    const distance = calculateEuclideanDistance(user1.preferences, user2.preferences);
+    const maxDistance = 20; // Adjust this based on your scale
+    const compatibilityPercentage = ((maxDistance - distance) / maxDistance) * 100;
+
+    // Display compatibility result
+    document.write(`<p>Compatibility Percentage between User 1 and User 2: ${compatibilityPercentage.toFixed(2)}%</p>`);
+  </script>
+</body>
+</html>

@@ -106,48 +106,45 @@
     </form>
   </div>
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const questionnaireForm = document.querySelector(".questionnaire-form");
-
-  questionnaireForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Get input values
-    const responses = {
-      housingPreference: parseInt(questionnaireForm.querySelector('input[name="housingPreference"]').value),
-      budgetLevel: parseInt(questionnaireForm.querySelector('input[name="budgetLevel"]').value),
-      noiseTolerance: parseInt(questionnaireForm.querySelector('input[name="noiseTolerance"]').value),
-      cleanlinessLevel: parseInt(questionnaireForm.querySelector('input[name="cleanlinessLevel"]').value),
-      wakeUpTime: parseInt(questionnaireForm.querySelector('input[name="wakeUpTime"]').value),
-      sleepTime: parseInt(questionnaireForm.querySelector('input[name="sleepTime"]').value),
-      smokingPreference: parseInt(questionnaireForm.querySelector('input[name="smokingPreference"]').value),
-      drinkingPreference: parseInt(questionnaireForm.querySelector('input[name="drinkingPreference"]').value),
-      socialLevel: parseInt(questionnaireForm.querySelector('input[name="socialLevel"]').value),
-      temperaturePreference: parseInt(questionnaireForm.querySelector('input[name="temperaturePreference"]').value)
-    };
-
-    // Get the currently logged-in user (assuming you set it during login)
-    const loggedInUser = localStorage.getItem("loggedInUser");
-
-    // Check if there is existing questionnaire data for the user
-    let userQuestionnaireData = localStorage.getItem(loggedInUser);
-
-    // If there's existing data, parse it from JSON
-    if (userQuestionnaireData) {
-      userQuestionnaireData = JSON.parse(userQuestionnaireData);
-    } else {
-      //extraneous case for no data
-      userQuestionnaireData = [];
-    }
-
-    userQuestionnaireData.push(responses);
-
-    //save array to local stor
-    localStorage.setItem(loggedInUser, JSON.stringify(userQuestionnaireData));
-
-  });
-});
-
+    document.addEventListener("DOMContentLoaded", function () {
+      const questionnaireForm = document.querySelector(".questionnaire-form");
+  
+      questionnaireForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+  
+        // Get input values
+        const responses = {
+          housingPreference: parseInt(questionnaireForm.querySelector('input[name="housingPreference"]').value),
+          budgetLevel: parseInt(questionnaireForm.querySelector('input[name="budgetLevel"]').value),
+          noiseTolerance: parseInt(questionnaireForm.querySelector('input[name="noiseTolerance"]').value),
+          cleanlinessLevel: parseInt(questionnaireForm.querySelector('input[name="cleanlinessLevel"]').value),
+          wakeUpTime: parseInt(questionnaireForm.querySelector('input[name="wakeUpTime"]').value),
+          sleepTime: parseInt(questionnaireForm.querySelector('input[name="sleepTime"]').value),
+          smokingPreference: parseInt(questionnaireForm.querySelector('input[name="smokingPreference"]').value),
+          drinkingPreference: parseInt(questionnaireForm.querySelector('input[name="drinkingPreference"]').value),
+          socialLevel: parseInt(questionnaireForm.querySelector('input[name="socialLevel"]').value),
+          temperaturePreference: parseInt(questionnaireForm.querySelector('input[name="temperaturePreference"]').value)
+        };
+  
+        // Get the currently logged-in user
+        const loggedInUser = localStorage.getItem("loggedInUser");
+  
+        // Check if the user has already completed the questionnaire
+        if (!userPointsTable.hasOwnProperty(loggedInUser)) {
+          // If not, create a new key with an empty list
+          userPointsTable[loggedInUser] = [];
+        }
+  
+        // Add the questionnaire responses to the user's data in the hash table
+        userPointsTable[loggedInUser].push(responses);
+  
+        // Save the hash table to local storage (optional)
+        localStorage.setItem("userPointsTable", JSON.stringify(userPointsTable));
+  
+        // Redirect to tinder.html
+        window.location.href = "tinder.html";
+      });
+    });
   </script>
 </body>
 </html>

@@ -7,9 +7,9 @@
   <style>
   body {
       font-family: Arial, sans-serif;
-      background-color: #00539F; /* Adjust the color to match the image */
+      background-color: #00539F; 
       display: flex;
-      flex-direction: column; /* Align children vertically */
+      flex-direction: column; /* align children vertically */
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -22,7 +22,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 300px;
-      margin-top: 20px; /* Add space between the header and the form */
+      margin-top: 20px; 
     }
     
     h1 {
@@ -41,17 +41,17 @@
     }
     .login-form button {
       padding: 10px;
-      background-color: #1E90FF; /* Adjust the color to match the image */
+      background-color: #1E90FF; 
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
     .login-form button:hover {
-      background-color: #4c91bf; /* Slightly darker for hover effect */
+      background-color: #4c91bf; /* darker color fo rhover */
     }
     .create-account {
-      color: #1E90FF; /* Adjust the color to match the image */
+      color: #1E90FF; 
       text-decoration: none;
       margin-top: 10px;
       display: block;
@@ -62,7 +62,7 @@
       <h1>RoomieUD</h1>
       <div class="login-container">
         <p>A place to find your future UDormmate!</p>
-        <div class="error-message" style="color: red;"></div> <!-- Add this for error messages -->
+        <div class="error-message" style="color: red;"></div> 
         <form class="login-form">
           <input type="text" placeholder="Username" name="Username" required>
           <input type="password" placeholder="Password" name="Password" required>
@@ -70,32 +70,52 @@
         </form>
         <a href="signup.html" class="create-account">New User? Create Account</a>
       </div>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.querySelector(".login-form");
-    const errorMessage = document.querySelector(".error-message");
-
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      // Get input values
-      const username = loginForm.querySelector('input[name="Username"]').value;
-      const password = loginForm.querySelector('input[name="Password"]').value;
-
-      // Check if username and password are in local storage
-      const storedUsername = localStorage.getItem("username");
-      const storedPassword = localStorage.getItem("password");
-
-      if (username === storedUsername && password === storedPassword) {
-        // Successful login, redirect to home.html
-        window.location.href = "home.html";
-      } else {
-        // Invalid credentials, display error message
-        errorMessage.textContent = "Invalid username or password.";
-      }
-    });
-  });
-  </script>
+      <script>
+        const loginForm = document.querySelector(".login-form");
+        const errorMessage = document.querySelector(".error-message");
+    
+        loginForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+    
+          const username = loginForm.querySelector('input[name="Username"]').value;
+          const password = loginForm.querySelector('input[name="Password"]').value;
+    
+          const storedUsername = localStorage.getItem("username");
+          const storedPassword = localStorage.getItem("password");
+    
+          if (username === storedUsername && password === storedPassword) {
+            //redirection
+            window.location.href = "home.html";
+          } else {
+            errorMessage.textContent = "Invalid username or password.";
+          }
+        });
+    
+        //global hash table
+        const userPointsTable = {};
+       
+        function handleLogin() {
+          const username = document.getElementById('username').value;
+    
+          
+          if (username.trim() !== '') {
+            
+            if (!userPointsTable.hasOwnProperty(username)) {
+              
+              userPointsTable[username] = [];
+    
+              
+              console.log(`User ${username} has been logged in, and their key has been created.`);
+            } else {
+              
+              console.warn(`User ${username} already exists. No action taken.`);
+            }
+          } else {
+            
+            console.error('Please enter a valid username.');
+          }
+        }
+      </script>
   </body>
   </html>
 

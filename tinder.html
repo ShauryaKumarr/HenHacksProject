@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compatibility App</title>
+    <title>Compatibility Match</title>
 </head>
 <body>
-  <h1>Compatibility App</h1>
 
   <script>
     // Function to calculate Euclidean distance between two preference objects
@@ -22,48 +21,72 @@
       return Math.sqrt(sumOfSquares);
     }
 
-    // Hardcoded user objects
-    const user1 = {
-      preferences: {
-        "housingPreference": 4,
-        "budgetLevel": 7,
-        "noiseTolerance": 5,
-        "cleanlinessLevel": 1,
-        "wakeUpTime": 6,
-        "sleepTime": 8,
-        "smokingPreference": 6,
-        "drinkingPreference": 3,
-        "socialLevel": 6,
-        "temperaturePreference": 5
-      },
-      image: "path/to/user1.jpg",
-      bio: "I love quiet spaces, enjoy budget-friendly living, and have a moderate social life."
-    };
+    // Retrieve user's responses from local storage
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    let userResponses = localStorage.getItem(loggedInUser);
 
-    const user2 = {
-      preferences: {
-        "housingPreference": 7,
-        "budgetLevel": 5,
-        "noiseTolerance": 8,
-        "cleanlinessLevel": 3,
-        "wakeUpTime": 7,
-        "sleepTime": 6,
-        "smokingPreference": 4,
-        "drinkingPreference": 7,
-        "socialLevel": 8,
-        "temperaturePreference": 4
-      },
-      image: "path/to/user2.jpg",
-      bio: "I enjoy a lively environment, prefer mid-range budgets, and have an active social life."
-    };
+    // Check if there are existing responses
+    if (userResponses) {
+      userResponses = JSON.parse(userResponses);
 
-    // Calculate compatibility between user1 and user2
-    const distance = calculateEuclideanDistance(user1.preferences, user2.preferences);
-    const maxDistance = 20; // Adjust this based on your scale
-    const compatibilityPercentage = ((maxDistance - distance) / maxDistance) * 100;
+      console.log("User Responses from Local Storage:", userResponses);
 
-    // Display compatibility result
-    document.write(`<p>Compatibility Percentage between User 1 and User 2: ${compatibilityPercentage.toFixed(2)}%</p>`);
+      // Hardcoded user objects
+      const user1 = {
+        preferences: userResponses,  // Assuming the first set of responses in local storage
+        image: "path/to/user1.jpg",
+        bio: "I love quiet spaces, enjoy budget-friendly living, and have a moderate social life."
+      };
+
+      const user2 = {
+        preferences: {
+          "housingPreference": 7,
+          "budgetLevel": 5,
+          "noiseTolerance": 8,
+          "cleanlinessLevel": 3,
+          "wakeUpTime": 7,
+          "sleepTime": 6,
+          "smokingPreference": 4,
+          "drinkingPreference": 7,
+          "socialLevel": 8,
+          "temperaturePreference": 4
+        },
+        image: "path/to/user2.jpg",
+        bio: "I enjoy a lively environment, prefer mid-range budgets, and have an active social life."
+      };
+
+      const user3 = {
+        preferences: {
+          "housingPreference": 6,
+          "budgetLevel": 6,
+          "noiseTolerance": 6,
+          "cleanlinessLevel": 5,
+          "wakeUpTime": 6,
+          "sleepTime": 7,
+          "smokingPreference": 5,
+          "drinkingPreference": 6,
+          "socialLevel": 7,
+          "temperaturePreference": 6
+        },
+        image: "path/to/user3.jpg",
+        bio: "I'm flexible with housing preferences, have a moderate budget, and enjoy a balanced social life."
+      };
+
+      // Array of hardcoded users
+      const users = [user1, user2, user3];
+
+      // Iterate through users and calculate compatibility
+      for (let i = 0; i < users.length; i++) {
+        const distance = calculateEuclideanDistance(users[i].preferences, userResponses);
+        const maxDistance = 20; // Adjust this based on your scale
+        const compatibilityPercentage = ((maxDistance - distance) / maxDistance) * 100;
+
+        // Display compatibility result
+        console.log(`Compatibility Percentage between User ${i + 1} and Logged In User: ${compatibilityPercentage.toFixed(2)}%`);
+      }
+    } else {
+      console.log("No user responses found in local storage.");
+    }
   </script>
 </body>
 </html>

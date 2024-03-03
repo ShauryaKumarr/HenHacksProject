@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0057B7; /* Blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-card {
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #1E90FF; /* Header blue */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.profile-image {
+    width: 100%;
+    display: block;
+}
+
+.card-body {
+    padding: 10px;
+    color: #333; /* Dark text for readability */
+}
+
+.name {
+    color: #0057B7; /* Name blue */
+    font-size: 18px;
+}
+
+.social-media{
+    /* Placeholder for social media icons */
+    margin: 10px;
+    padding: 10px;
+}
+
+.social-media .twitter-icon:before,
+.social-media .instagram-icon:before {
+    /* Placeholder for actual icons, using text for now */
+    content: attr(class);
+    padding: 0 5px;
+}
+
+.about-section h3,
+.interests-section h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #0057B7; /* Section title blue */
+}
+
+.match-percentage {
+    background-color: #FFD700; /* Match percentage gold */
+    color: #0057B7; /* Match percentage blue */
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.card-footer {
+    background-color: #FFD700; /* Footer gold */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nope-button,
+.like-button {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.nope-button {
+    background-color: #FF6347; /* Nope button red */
+}
+
+.like-button {
+    background-color: #32CD32; /* Like button green */
+}

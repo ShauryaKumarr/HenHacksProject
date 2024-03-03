@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compatibility Match</title>
+    <link rel="stylesheet" href="tinder.css">
 </head>
 <body>
+  
+    <div id="userContainer" class="profile-card"></div>
 
     <script>
         // Function to calculate Euclidean distance between two preference objects
@@ -45,60 +48,65 @@
               "socialLevel": 8,
               "temperaturePreference": 4
             },
-            image: "path/to/user1.jpg",
-            bio: "I love quiet spaces, enjoy budget-friendly living, and have a moderate social life.",
+            name: "Sasan Sedighi",
+            age: 19,
+            image: "https://media.licdn.com/dms/image/C4E03AQGyN9t3o3vauQ/profile-displayphoto-shrink_400_400/0/1657401476133?e=1715212800&v=beta&t=7sDFWsqzsYJoOPovLt5BfQ6VKnGVBccXoI0b_WctON8",
+            bio: "I love eating food, playing video games, and knitting! I am clean, an early bird, and Art History major!",
+            interests: ["Cooking", "Crotchet", "Sleeping", "Video Games", "Dungeons & Dragons"],
+            compatibilityPercentage: null
           };
-    
-          const user2 = {
-            preferences: {
-              "housingPreference": 7,
-              "budgetLevel": 5,
-              "noiseTolerance": 8,
-              "cleanlinessLevel": 3,
-              "wakeUpTime": 7,
-              "sleepTime": 6,
-              "smokingPreference": 4,
-              "drinkingPreference": 7,
-              "socialLevel": 8,
-              "temperaturePreference": 4
-            },
-            image: "path/to/user2.jpg",
-            bio: "I enjoy a lively environment, prefer mid-range budgets, and have an active social life."
-          };
-    
-          const user3 = {
-            preferences: {
-              "housingPreference": 6,
-              "budgetLevel": 6,
-              "noiseTolerance": 6,
-              "cleanlinessLevel": 5,
-              "wakeUpTime": 6,
-              "sleepTime": 7,
-              "smokingPreference": 5,
-              "drinkingPreference": 6,
-              "socialLevel": 7,
-              "temperaturePreference": 6
-            },
-            image: "path/to/user3.jpg",
-            bio: "I'm flexible with housing preferences, have a moderate budget, and enjoy a balanced social life."
-          };
-    
+
           // Array of hardcoded users
-          const users = [user1, user2, user3];
+          const users = [user1];
     
           // Iterate through users and calculate compatibility
           for (let i = 0; i < users.length; i++) {
             const distance = calculateEuclideanDistance(users[i].preferences, userResponses);
             const maxDistance = 20; // Adjust this based on your scale
             const compatibilityPercentage = ((maxDistance - distance) / maxDistance) * 100;
+
+            users[i].compatibilityPercentage = compatibilityPercentage;
     
             // Display compatibility result
-            console.log(`Compatibility Percentage between User ${i + 1} and Logged In User: ${compatibilityPercentage.toFixed(2)}%`);
+            console.log(`Compatibility Percentage between ${users[i].name} and Logged In User: ${compatibilityPercentage.toFixed(2)}%`);
+
+            // Create HTML elements and append to userContainer
+            const userContainer = document.getElementById("userContainer");
+
+            const userElement = document.createElement("div");
+            userElement.className = "profile-card";
+            userElement.innerHTML = `
+                <div class="card-header">RoomieUD</div>
+                <img src="${users[i].image}" alt="Profile Picture" class="profile-image">
+                <div class="card-body">
+                    <h2 class="name">${users[i].name} ${users[i].age}</h2>
+                    <div class="about-section">
+                        <h3>About me</h3>
+                        <p>${users[i].bio}</p>
+                    </div>
+                    <div class="interests-section">
+                        <h3>Interests</h3>
+                        <p>${users[i].interests.join(", ")}</p>
+                    </div>
+                    <div class="match-percentage">${compatibilityPercentage.toFixed(0)}% Match</div>
+                </div>
+                <div class="card-footer">
+                    <button class="nope-button">X</button>
+                    <button class="like-button">✔</button>
+                </div>
+            `;
+
+            userContainer.appendChild(userElement);
           }
         } else {
           console.log("No user responses found in local storage.");
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.like-button').addEventListener('click', function() {
+                window.location.href = 'cc.html';
+            });
+        });
     </script>
-    
 </body>
 </html>

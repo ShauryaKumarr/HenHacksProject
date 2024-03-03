@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.chat-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.chat-bubble {
+    background-color: #e9e9e9; /* Light grey background for chat bubbles */
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    width: fit-content;
+    max-width: 80%;
+}
+
+/* Chat from 'you' aligns right */
+.chat-bubble.you {
+    margin-left: auto;
+    background-color: #d1d1d1; /* Slightly darker grey background for 'your' messages */
+}
+
+/* Special message */
+.special-message {
+    text-align: center;
+    background-color: #0057B7; /* Blue background */
+    color: #FFD700; /* Yellow text */
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#lname{
+    float: right;
+
+}

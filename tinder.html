@@ -74,8 +74,8 @@
             name: "Krish Modi",
             age: 19,
             image: "https://media.licdn.com/dms/image/D4E03AQHZHLxDB443LQ/profile-displayphoto-shrink_100_100/0/1692331108680?e=1715212800&v=beta&t=Skwy-L8Mr5uBGHiNpkZqxxa_A_FYCR-u3wTTR5RGRIQ",
-            bio: "I love eating food, playing video games, and knitting! I am clean, an early bird, and Art History major!",
-            interests: ["Cooking", "Crotchet", "Sleeping", "Video Games", "Dungeons & Dragons"],
+            bio: "I like hunting, fishing, driving my truck, and singing country songs!",
+            interests: ["Morgan Wallen", "Dallas Cowboys", "Bollywood", "TrickShots"],
             compatibilityPercentage: null
           };
 
@@ -95,8 +95,8 @@
             name: "Ronith Anchan",
             age: 19,
             image: "https://media.licdn.com/dms/image/D4D03AQHumzOv-IkAkg/profile-displayphoto-shrink_400_400/0/1694236526261?e=1715212800&v=beta&t=2T3MGCl-qzmPZQgvlnCC6jHIy0LEUSHlS5SUkLt-6SQ",
-            bio: "I love eating food, playing video games, and knitting! I am clean, an early bird, and Art History major!",
-            interests: ["Cooking", "Crotchet", "Sleeping", "Video Games", "Dungeons & Dragons"],
+            bio: "I am a third generation Indian, and an anime enthusiast! I love playing table tennis, badminton, and solving math!",
+            interests: ["Chess", "Tennis","Physics", "Programming"],
             compatibilityPercentage: null
           };
           // Array of hardcoded users
@@ -140,13 +140,13 @@
             userContainer.appendChild(userElement);
           }
 
-          // Function to handle "Nope" button click
+          //function for nope
           function handleNope() {
             currentUserIndex++;
             if (currentUserIndex < users.length) {
               displayCurrentUser();
             } else {
-              // Handle end of users, for example, show a message or redirect
+              //
               console.log("No more users to display");
             }
           }
@@ -155,7 +155,7 @@
             window.location.href = 'cc.html';
         }
 
-          // Display the initial user
+          //display
           displayCurrentUser();
         } else {
           console.log("No user responses found in local storage.");

@@ -62,9 +62,9 @@
   <h1>Roommate Matching Questionnaire</h1>
   <div class="questionnaire-container">
     <form class="questionnaire-form">
-      <label for="housing-preference">1. Housing Preference (1 for Dorms, 10 for Apartments):</label>
+      <label for="housing-preference">1. Tolerance towards pets (1 for no pets, 10 for open to pets):</label>
       <input type="range" id="housing-preference" name="housingPreference" min="1" max="10" required>
-      <span id="housing-preference-value">3</span>
+      <span id="housing-preference-value"></span>
   
       <label for="budget-level">2. Budget Level (1 for Lowest Rent, 10 for Highest Rent):</label>
       <input type="range" id="budget-level" name="budgetLevel" min="1" max="10" required>
@@ -94,38 +94,61 @@
       <input type="range" id="drinking-preference" name="drinkingPreference" min="1" max="10" required>
       <span id="drinking-preference-value"> </span>
 
-      <label for="drinking-preference">9. How social will your room be? (1 for Only roomates, 10 for Very Social):</label>
-      <input type="range" id="drinking-preference" name="drinkingPreference" min="1" max="10" required>
+      <label for="drinking-preference">9. How social will your room be? (1 for Only roommates, 10 for Very Social):</label>
+      <input type="range" id="drinking-preference" name="socialLevel" min="1" max="10" required>
       <span id="drinking-preference-value"> </span>
 
       <label for="drinking-preference">10. Room Temperature Preference (1 for Very Cold, 10 for Very Hot):</label>
-      <input type="range" id="drinking-preference" name="drinkingPreference" min="1" max="10" required>
+      <input type="range" id="drinking-preference" name="temperaturePreference" min="1" max="10" required>
       <span id="drinking-preference-value"> </span>
   
       <button type="submit">Submit</button>
     </form>
   </div>
-
   <script>
-  document.querySelector('.questionnaire-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+  document.addEventListener("DOMContentLoaded", function () {
+  const questionnaireForm = document.querySelector(".questionnaire-form");
 
-  const formData = {
-    housing: document.getElementById('housing').value,
-    budget: document.getElementById('budget').value,
-    noiseTolerance: document.getElementById('noise-tolerance').value,
-    cleanliness: document.getElementById('cleanliness').value,
-    wakeUpTime: document.getElementById('wake-up-time').value,
-    sleepTime: document.getElementById('sleep-time').value,
-    smoker: document.getElementById('smoker').checked,
-    drinker: document.getElementById('drinker').checked,
-  };
+  questionnaireForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  // Save formData to localStorage
-  localStorage.setItem('roommateQuestionnaire', JSON.stringify(formData));
+    // Get input values
+    const responses = {
+      housingPreference: parseInt(questionnaireForm.querySelector('input[name="housingPreference"]').value),
+      budgetLevel: parseInt(questionnaireForm.querySelector('input[name="budgetLevel"]').value),
+      noiseTolerance: parseInt(questionnaireForm.querySelector('input[name="noiseTolerance"]').value),
+      cleanlinessLevel: parseInt(questionnaireForm.querySelector('input[name="cleanlinessLevel"]').value),
+      wakeUpTime: parseInt(questionnaireForm.querySelector('input[name="wakeUpTime"]').value),
+      sleepTime: parseInt(questionnaireForm.querySelector('input[name="sleepTime"]').value),
+      smokingPreference: parseInt(questionnaireForm.querySelector('input[name="smokingPreference"]').value),
+      drinkingPreference: parseInt(questionnaireForm.querySelector('input[name="drinkingPreference"]').value),
+      socialLevel: parseInt(questionnaireForm.querySelector('input[name="socialLevel"]').value),
+      temperaturePreference: parseInt(questionnaireForm.querySelector('input[name="temperaturePreference"]').value)
+    };
 
-  // Redirect to another page or show a message
-  alert('Questionnaire submitted successfully!');
+    // Get the currently logged-in user (assuming you set it during login)
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    // Check if there is existing questionnaire data for the user
+    let userQuestionnaireData = localStorage.getItem(loggedInUser);
+
+    // If there's existing data, parse it from JSON
+    if (userQuestionnaireData) {
+      userQuestionnaireData = JSON.parse(userQuestionnaireData);
+    } else {
+      // If no existing data, initialize as an empty array
+      userQuestionnaireData = [];
+    }
+
+    // Add the new questionnaire responses to the array
+    userQuestionnaireData.push(responses);
+
+    // Save the updated array back to local storage
+    localStorage.setItem(loggedInUser, JSON.stringify(userQuestionnaireData));
+
+    // Optionally, you can redirect the user to another page after submitting the questionnaire
+    // window.location.href = "another_page.html";
+  });
 });
 
   </script>

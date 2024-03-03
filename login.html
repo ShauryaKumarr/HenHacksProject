@@ -90,31 +90,7 @@
             errorMessage.textContent = "Invalid username or password.";
           }
         });
-    
-        //global hash table
-        const userPointsTable = {};
-       
-        function handleLogin() {
-          const username = document.getElementById('username').value;
-    
-          
-          if (username.trim() !== '') {
-            
-            if (!userPointsTable.hasOwnProperty(username)) {
-              
-              userPointsTable[username] = [];
-    
-              
-              console.log(`User ${username} has been logged in, and their key has been created.`);
-            } else {
-              
-              console.warn(`User ${username} already exists. No action taken.`);
-            }
-          } else {
-            
-            console.error('Please enter a valid username.');
-          }
-        }
+  
       </script>
   </body>
   </html>

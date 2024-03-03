@@ -9,8 +9,10 @@
 <body>
   
     <div id="userContainer" class="profile-card"></div>
-
+    
     <script>
+        let currentUserIndex = 0;
+
         // Function to calculate Euclidean distance between two preference objects
         function calculateEuclideanDistance(prefs1, prefs2) {
           const keys = Object.keys(prefs1);
@@ -55,20 +57,58 @@
             interests: ["Cooking", "Crotchet", "Sleeping", "Video Games", "Dungeons & Dragons"],
             compatibilityPercentage: null
           };
+          
+          const user2 = {
+            preferences: {
+              "housingPreference": 1,
+              "budgetLevel": 5,
+              "noiseTolerance": 6,
+              "cleanlinessLevel": 3,
+              "wakeUpTime": 7,
+              "sleepTime": 2,
+              "smokingPreference": 1,
+              "drinkingPreference": 9,
+              "socialLevel": 9,
+              "temperaturePreference": 4
+            },
+            name: "Krish Modi",
+            age: 19,
+            image: "https://media.licdn.com/dms/image/D4E03AQHZHLxDB443LQ/profile-displayphoto-shrink_100_100/0/1692331108680?e=1715212800&v=beta&t=Skwy-L8Mr5uBGHiNpkZqxxa_A_FYCR-u3wTTR5RGRIQ",
+            bio: "I love eating food, playing video games, and knitting! I am clean, an early bird, and Art History major!",
+            interests: ["Cooking", "Crotchet", "Sleeping", "Video Games", "Dungeons & Dragons"],
+            compatibilityPercentage: null
+          };
 
+          const user3 = {
+            preferences: {
+              "housingPreference": 1,
+              "budgetLevel": 9,
+              "noiseTolerance": 2,
+              "cleanlinessLevel": 3,
+              "wakeUpTime": 10,
+              "sleepTime": 8,
+              "smokingPreference": 1,
+              "drinkingPreference": 2,
+              "socialLevel": 9,
+              "temperaturePreference": 2
+            },
+            name: "Ronith Anchan",
+            age: 19,
+            image: "https://media.licdn.com/dms/image/D4D03AQHumzOv-IkAkg/profile-displayphoto-shrink_400_400/0/1694236526261?e=1715212800&v=beta&t=2T3MGCl-qzmPZQgvlnCC6jHIy0LEUSHlS5SUkLt-6SQ",
+            bio: "I love eating food, playing video games, and knitting! I am clean, an early bird, and Art History major!",
+            interests: ["Cooking", "Crotchet", "Sleeping", "Video Games", "Dungeons & Dragons"],
+            compatibilityPercentage: null
+          };
           // Array of hardcoded users
-          const users = [user1];
+          const users = [user1,user2, user3];
     
-          // Iterate through users and calculate compatibility
-          for (let i = 0; i < users.length; i++) {
-            const distance = calculateEuclideanDistance(users[i].preferences, userResponses);
+          // Function to display the current user
+          function displayCurrentUser() {
+            const distance = calculateEuclideanDistance(users[currentUserIndex].preferences, userResponses);
             const maxDistance = 20; // Adjust this based on your scale
             const compatibilityPercentage = ((maxDistance - distance) / maxDistance) * 100;
 
-            users[i].compatibilityPercentage = compatibilityPercentage;
-    
-            // Display compatibility result
-            console.log(`Compatibility Percentage between ${users[i].name} and Logged In User: ${compatibilityPercentage.toFixed(2)}%`);
+            users[currentUserIndex].compatibilityPercentage = compatibilityPercentage;
 
             // Create HTML elements and append to userContainer
             const userContainer = document.getElementById("userContainer");
@@ -77,36 +117,49 @@
             userElement.className = "profile-card";
             userElement.innerHTML = `
                 <div class="card-header">RoomieUD</div>
-                <img src="${users[i].image}" alt="Profile Picture" class="profile-image">
+                <img src="${users[currentUserIndex].image}" alt="Profile Picture" class="profile-image">
                 <div class="card-body">
-                    <h2 class="name">${users[i].name} ${users[i].age}</h2>
+                    <h2 class="name">${users[currentUserIndex].name} ${users[currentUserIndex].age}</h2>
                     <div class="about-section">
                         <h3>About me</h3>
-                        <p>${users[i].bio}</p>
+                        <p>${users[currentUserIndex].bio}</p>
                     </div>
                     <div class="interests-section">
                         <h3>Interests</h3>
-                        <p>${users[i].interests.join(", ")}</p>
+                        <p>${users[currentUserIndex].interests.join(", ")}</p>
                     </div>
                     <div class="match-percentage">${compatibilityPercentage.toFixed(0)}% Match</div>
                 </div>
                 <div class="card-footer">
-                    <button class="nope-button">X</button>
-                    <button class="like-button">✔</button>
+                    <button class="nope-button" onclick="handleNope()">X</button>
+                    <button class="like-button" onclick="handleLike()">✔</button>
                 </div>
             `;
 
+            userContainer.innerHTML = ''; // Clear previous user
             userContainer.appendChild(userElement);
           }
+
+          // Function to handle "Nope" button click
+          function handleNope() {
+            currentUserIndex++;
+            if (currentUserIndex < users.length) {
+              displayCurrentUser();
+            } else {
+              // Handle end of users, for example, show a message or redirect
+              console.log("No more users to display");
+            }
+          }
+
+        function handleLike() {
+            window.location.href = 'cc.html';
+        }
+
+          // Display the initial user
+          displayCurrentUser();
         } else {
           console.log("No user responses found in local storage.");
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.like-button').addEventListener('click', function() {
-                window.location.href = 'cc.html';
-            });
-        });
     </script>
 </body>
 </html>

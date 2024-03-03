@@ -26,17 +26,17 @@
           return Math.sqrt(sumOfSquares);
         }
     
-        // Retrieve user's responses from local storage
+        // gets the inf
         const loggedInUser = localStorage.getItem("loggedInUser");
         let userResponses = localStorage.getItem(loggedInUser);
     
-        // Check if there are existing responses
+        //check for existing responses
         if (userResponses !== null) {
           userResponses = JSON.parse(userResponses);
     
           console.log("User Responses from Local Storage:", userResponses);
     
-          // Hardcoded user objects
+        //hard coded example profiles
           const user1 = {
             preferences: {
               "housingPreference": 7,
@@ -99,10 +99,10 @@
             interests: ["Chess", "Tennis","Physics", "Programming"],
             compatibilityPercentage: null
           };
-          // Array of hardcoded users
+          
           const users = [user1,user2, user3];
     
-          // Function to display the current user
+          
           function displayCurrentUser() {
             const distance = calculateEuclideanDistance(users[currentUserIndex].preferences, userResponses);
             const maxDistance = 20; // Adjust this based on your scale
@@ -110,7 +110,7 @@
 
             users[currentUserIndex].compatibilityPercentage = compatibilityPercentage;
 
-            // Create HTML elements and append to userContainer
+            
             const userContainer = document.getElementById("userContainer");
 
             const userElement = document.createElement("div");
@@ -155,7 +155,7 @@
             window.location.href = 'cc.html';
         }
 
-          //display
+          
           displayCurrentUser();
         } else {
           console.log("No user responses found in local storage.");

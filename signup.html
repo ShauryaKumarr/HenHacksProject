@@ -80,21 +80,21 @@
     registrationForm.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      // Get input values
+      //inputs
       const name = registrationForm.querySelector("#name").value;
       const email = registrationForm.querySelector("#email").value;
       const age = registrationForm.querySelector("#age").value;
       const regUsername = registrationForm.querySelector("#regUsername").value;
       const regPassword = registrationForm.querySelector("#regPassword").value;
 
-      // Store user information in local storage
+      //store user information in the local storage
       localStorage.setItem("name", name);
       localStorage.setItem("email", email);
       localStorage.setItem("age", age);
       localStorage.setItem("username", regUsername);
       localStorage.setItem("password", regPassword);
 
-      // Redirect to login.html after successful registration
+
       window.location.href = "login.html";
     });
   });

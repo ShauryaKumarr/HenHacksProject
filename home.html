@@ -112,7 +112,7 @@
         questionnaireForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // Get input values
+            //input number vals
             const responses = {
                 housingPreference: parseInt(questionnaireForm.querySelector('input[name="housingPreference"]').value),
                 budgetLevel: parseInt(questionnaireForm.querySelector('input[name="budgetLevel"]').value),
@@ -126,13 +126,11 @@
                 temperaturePreference: parseInt(questionnaireForm.querySelector('input[name="temperaturePreference"]').value)
             };
 
-            // Get the currently logged-in user
             const loggedInUser = localStorage.getItem("loggedInUser");
 
-            // Save the responses into the logged-in user's local storage
+            //save responses into local storage
             localStorage.setItem(loggedInUser, JSON.stringify(responses));
 
-            // Redirect to tinder.html
             window.location.href = "tinder.html";
         });
     });
